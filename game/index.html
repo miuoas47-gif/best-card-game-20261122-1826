@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Emberfall Duel — a card battle of four elements</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div id="app">
+  <header id="topbar">
+    <div class="brand">EMBERFALL <span>DUEL</span></div>
+    <div id="scoreboard" class="hidden">
+      <span id="score-line">Score 0</span>
+      <span id="turn-line">Turn 1</span>
+      <button id="mute-btn" type="button" title="Mute (M)">Sound: on</button>
+    </div>
+  </header>
+
+  <main id="table" class="hidden">
+    <section id="opponent-zone" aria-label="Opponent">
+      <div class="fighter" id="opponent-fighter">
+        <div class="portrait foe">CW</div>
+        <div class="fighter-info">
+          <div class="fighter-name">Cinder Warden <span class="tag">AI rival</span></div>
+          <div class="life-row">
+            <div class="life-bar"><div id="foe-life-fill" class="life-fill foe-fill"></div></div>
+            <span id="foe-life-text" class="life-text">24 / 24</span>
+            <span id="foe-guard" class="guard-badge hidden">🛡 0</span>
+          </div>
+          <div class="ember-row">Embers <span id="foe-ember" class="ember-pips"></span></div>
+        </div>
+      </div>
+      <div id="foe-hand" class="hand foe-hand" aria-label="Opponent hand"></div>
+      <div id="foe-played" class="played-row" aria-label="Opponent last card"></div>
+    </section>
+
+    <section id="middle">
+      <div id="log" aria-live="polite"></div>
+      <div id="phase-banner"></div>
+    </section>
+
+    <section id="player-zone" aria-label="You">
+      <div id="player-played" class="played-row" aria-label="Your last card"></div>
+      <div id="player-hand" class="hand player-hand" aria-label="Your hand"></div>
+      <div class="fighter" id="player-fighter">
+        <div class="portrait you">YOU</div>
+        <div class="fighter-info">
+          <div class="fighter-name">Emberkeeper <span class="tag">you</span></div>
+          <div class="life-row">
+            <div class="life-bar"><div id="you-life-fill" class="life-fill you-fill"></div></div>
+            <span id="you-life-text" class="life-text">24 / 24</span>
+            <span id="you-guard" class="guard-badge hidden">🛡 0</span>
+          </div>
+          <div class="ember-row">Embers <span id="you-ember" class="ember-pips"></span></div>
+        </div>
+        <button id="end-turn-btn" type="button">End turn ⏎</button>
+      </div>
+    </section>
+  </main>
+
+  <section id="title-screen">
+    <div class="title-card">
+      <div class="title-kicker">A CARD DUEL OF FOUR ELEMENTS</div>
+      <h1>EMBERFALL<br>DUEL</h1>
+      <p class="title-blurb">Four elements. One table. Outplay the Cinder Warden:
+        spend embers, chain elemental advantages, guard what you cannot dodge,
+        and burn the Warden's life to zero before yours runs out.</p>
+      <div class="element-key">
+        <span class="key flame">▲ Flame beats Thorn</span>
+        <span class="key thorn">✦ Thorn beats Tide</span>
+        <span class="key tide">● Tide beats Stone</span>
+        <span class="key stone">◆ Stone beats Flame</span>
+      </div>
+      <button id="start-btn" type="button">Deal the cards</button>
+      <p class="title-hint">Click a card to play it · Keys 1–7 pick a card · Enter ends your turn · R restarts</p>
+      <p class="title-rules">Both duelists start at 24 life. Each turn you gain an ember (max 10) and draw a card.
+        A card whose element beats the rival's last element deals +2 damage. Guard soaks hits first.</p>
+    </div>
+  </section>
+
+  <section id="end-screen" class="hidden">
+    <div class="end-card">
+      <h2 id="end-title">Victory</h2>
+      <p id="end-text"></p>
+      <div id="end-stats" class="end-stats"></div>
+      <button id="again-btn" type="button">Duel again (R)</button>
+    </div>
+  </section>
+</div>
+<script type="module" src="src/main.js"></script>
+</body>
+</html>
