@@ -8,7 +8,9 @@
 //
 // Outside the grader, MAKEFUN_OUTPUT_DIR stands in for /output:
 //   mkdir -p out && MAKEFUN_OUTPUT_DIR=out node main.ts
-// Run it twice and the two outputs are byte for byte identical.
+// Run it twice and the two outputs are byte for byte identical: the copy
+// is a plain recursive copy and the dossier is a pure function of the files
+// it reads, so nothing about the run (time, order, environment) leaks in.
 
 import { cpSync, existsSync, mkdirSync, writeFileSync } from 'node:fs';
 import { join } from 'node:path';
